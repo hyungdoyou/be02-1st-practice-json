@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 public class ServerFileTest {
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(7777);
+            ServerSocket serverSocket = new ServerSocket(9999);
 
             Socket yhd = serverSocket.accept();
 
@@ -27,16 +27,10 @@ public class ServerFileTest {
 
             System.out.println();
 
-            //System.out.print("고객이 요청한 파일을 보내주세요 : ");
+
             // 여기서부터 보내는 코드
-            //Scanner sc = new Scanner(System.in);
-            //OutputStream cos = yhd.getOutputStream();
-            //PrintStream ps = new PrintStream(cos);
-
-            //String test1 = sc.nextLine();
-            //ps.println(test1);
-
             FileInputStream fileInputStream = new FileInputStream("c:\\test\\" + str);
+
             BufferedOutputStream brs = new BufferedOutputStream(yhd.getOutputStream());
             byte[] bytes = fileInputStream.readAllBytes();
             for(int i=0; i<bytes.length; i++) {
@@ -45,6 +39,7 @@ public class ServerFileTest {
             }
             // 여기까지 보내는 코드
 
+            brs.close();
             serverSocket.close();
             yhd.close();
 

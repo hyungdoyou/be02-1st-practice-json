@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ServerTest {
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(7777);
+            ServerSocket serverSocket = new ServerSocket(9999);
 
             Socket yhd = serverSocket.accept();
 

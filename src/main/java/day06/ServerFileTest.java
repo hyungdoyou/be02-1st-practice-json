@@ -15,7 +15,7 @@ public class ServerFileTest {
 
             System.out.println(yhd.getInetAddress() + " 주소를 사용하는 고객이 접속하였습니다.");
 
-            // 여기서부터 받는 코드
+            // 여기부터 받는 코드
             System.out.print("고객이 서버로 보낸 메시지입니다 : ");
             InputStream cis = yhd.getInputStream();
             InputStreamReader isr = new InputStreamReader(cis);
@@ -27,26 +27,26 @@ public class ServerFileTest {
 
             System.out.println();
 
+            // 여기부터 보내는 코드
+            OutputStream cos = yhd.getOutputStream();
+            BufferedOutputStream brs = new BufferedOutputStream(cos);
 
-            // 여기서부터 보내는 코드
             FileInputStream fileInputStream = new FileInputStream("c:\\test\\" + str);
-
-            BufferedOutputStream brs = new BufferedOutputStream(yhd.getOutputStream());
             byte[] bytes = fileInputStream.readAllBytes();
             for(int i=0; i<bytes.length; i++) {
                 brs.write(bytes[i]);
-                System.out.print((char)bytes[i]);
+                //System.out.println(bytes[i]);
             }
             // 여기까지 보내는 코드
 
-            brs.close();
+            brs.close(); // 스트림을 안닫아주면 파일이 언제 끝나는지 알 수 없기 때문에 서버에서는 계속 받으려고만 한다.
+            br.close();
+
             serverSocket.close();
             yhd.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }

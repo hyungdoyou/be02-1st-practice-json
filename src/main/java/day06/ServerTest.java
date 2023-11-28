@@ -10,6 +10,7 @@ public class ServerTest {
         try {
             ServerSocket serverSocket = new ServerSocket(9999);
 
+            //Socket yhd = serverSocket.accept();
             Socket yhd = serverSocket.accept();
 
             System.out.println(yhd.getInetAddress() + " 주소를 사용하는 고객이 접속하였습니다.");
